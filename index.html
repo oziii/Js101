@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset = "utf-8"/>
+        <meta name="viewport" content="initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie-edge">
+        <!--<script src="script.js"></script> js dosyasını html de kullanmak için-->
+		<title> Anasayfa </title>
+		<style>
+            .header{
+                text-align: center;
+                font-family: sans-serif;
+                font-size: 18px;
+                background: red;
+            }
+            .container{
+                text-align: center;
+                font-size: 30px;
+            }
+        </style>
+	</head>
+	
+	<body>
+	
+        <div class="header">
+            <h1>Js 101</h1>
+        </div>
+    
+        <div class="container">
+
+            <p id = "para1">Click one</p>
+            <button onclick="tikla()">Clicl</button>
+
+            <button onclick="this.innerHTML = 'Butona tıklandı'">Click 2</button>
+
+            <button onclick="tikla2(this)">Click 3</button>
+
+            <button onclick="renkDegistir()">Click change color</button>
+        </div>
+        <div class="container">
+            <button onmouseover="mouseover()" onmouseout="mouseout()">First Click</button>
+        </div>
+        <div class="container">
+                <form name="form1" action="gonder.php" method="POST" onsubmit="return dogrula();">
+                    <input type="text" name="isim"> 
+                
+                <button type="submit">Submit</button>
+        </div>
+        <script>
+            //Değişken Atama ve Toplama
+            var sayi1 = 20;
+            var sayi2 = 30;
+            var sayi3 = 40;
+
+            alert("Toplamları: "+(sayi1+sayi2+sayi3)); //alert çıkartarak toplamları gösteriyoruz
+            //
+            var a;
+            a = 10;
+
+            var b = a*2 +10;
+
+            alert("b değeri: "+b);
+
+
+            //Arrayler
+            var array = ["Java","Python","C++","C"];
+            alert(array[0]);
+            //alert(array[1]);
+            //alert(array[2]);
+            //alert(array[3]);
+            array[4] = "Php"; // or
+            array.push("Ruby");
+            alert(array);
+            alert(array.length);
+
+
+            //For Döngüsü
+            for (var i = 0; i < 10; i++){
+                 console.log("i degeri: "+ i);
+            }
+
+
+            //While Döngüsü
+            var i = 0;
+            while (i<100){
+                console.log("i değeri: "+i);
+                i += 2;
+            }
+
+
+
+            //Array Elemanları Yazma
+            var sayilar = [32,5,1,100,-1,90];
+            console.log("Array Elemanları...");
+
+            for (var i = 0; i < sayilar.length;i++){
+                console.log("Eleman: "+sayilar[i]);
+            }//or
+            sayilar.forEach(function(sayi){
+                console.log("Eleman: "+sayi);
+            });
+
+
+            //Koşullu Durumlar
+            var a = 5;
+            var b = 6;
+
+            if (a != b){
+                console.log("Eşit Değildir");
+            }
+
+            if (2 == 2){
+                console.log("2 eşittir");
+            }
+            if (2 == "2"){//veri tipine bakmaz aynı şekilde ise true sayar
+                console.log("2 eşittir string");
+            }
+            if (2 === "2"){//veri tipine de bakra eğer === varsa
+                console.log("2")
+            }
+            else{// ilk koşul true değilse bu işlemi yap
+                console.log("2 eşit değildir");
+            }
+
+            if (3 == 3 && "Ozi" == "Ozi"){//&& and iki koşulunda true olması gerekir true olması için
+                console.log("And Döner");
+            }
+            if (3 == 3 || "Ozi" == "Oğuz"){//|| or bir koşulun true olması yeterlidir true olması için
+                console.log("Or Döner");
+            }
+            var islem = 3;
+            if( islem == 1){
+                console.log("İşlem 1");
+            }
+            else if( islem == 2){
+                console.log("İşlem 2");
+            } 
+            else if( islem == 3){//koşul false dönerse diğer koşullara bakar
+                console.log("İşlem 3");
+            }
+
+            switch(islem){
+                case 1:
+                    console.log("İşlem 1");
+                    break;
+                case 2:
+                    console.log("İşlem 2");
+                    break;
+                case 3:
+                    console.log("İşlem 3");
+                    break;
+                default: 
+                    console.log("Geçersiz İşlem...");       
+            }
+
+
+            //Foksiyonlar
+            function selamla(){
+                console.log("Merhaba Nasılsın ?");
+            }
+            function selamla_cevap(isim){//js de veri tipleri dinamil olarak belirlendiği için var yazmak gereksiz isimde
+                console.log("Merhaba "+isim);
+            }
+
+            selamla_cevap("Ozi");
+
+            selamla();
+
+            function toplama(a,b,c){
+                return a + b + c;
+            }
+
+            var toplam = toplama(3,4,5);
+
+            console.log("Toplamları : "+ toplam);
+
+
+            //Obje Oluşturmak
+
+            var calisan = {
+                isim: "Oğuzhan",
+                soyisim: "Karademir",
+                numara: 1234,
+                diller: ["Php","Java","C++"],
+                adres: {
+                    cadde: "Ordu",
+                    sokak: "555.Sk."
+                },
+                isimBilgileri : function(){
+                    return "İsmi: "+ this.isim + " Soyisim: " + this.soyisim;
+                }
+            };
+
+            console.log(calisan.isim);
+            console.log(calisan.numara);
+            console.log(calisan.diller);
+            console.log(calisan.adres);
+            console.log(calisan.adres.cadde);
+            console.log(calisan.adres.sokak);
+            console.log(calisan.isimBilgileri());
+
+            var calisan_other = new Object();
+
+            calisan_other.isim = "Oğuzhan";
+            calisan_other.soyisim = "Karademir";
+            calisan_other.isimBilgileri = function(){
+                return "İsmi: "+ this.isim + " Soyisim: " + this.soyisim;
+            }
+
+            console.log(calisan_other.isim);
+            console.log(calisan_other.soyisim);
+            console.log(calisan_other.isimBilgileri());
+
+            function Calisan(isim,soyisim,numara){
+                this.isim = isim;
+                this.soyisim = soyisim;
+                this.numara = numara;
+                this.bilgileriGoster = function(){
+                    return "İsmi: "+ this.isim + "\nSoyisim: " + this.soyisim + "\nNumara: " + this.numara;
+                }
+            }
+                var calisan1 = new Calisan("Musatafa Oğuzhan","Karademir",4239);
+                var calisan2 = new Calisan("Sefa","Tokaç",3009);
+
+                console.log(calisan1.bilgileriGoster());
+                console.log(calisan2.bilgileriGoster());
+
+
+            //Eventler    */
+
+                function tikla(){
+                    alert("Butona tıklandı...");
+                }
+
+                function tikla2(elemnet){
+                    elemnet.innerHTML= "Butona Tıklandııı";
+                }
+            
+                function renkDegistir(){
+                    var elemnet = document.getElementById("para1");
+                    elemnet.style.color = "red";
+                }
+
+                function mouseover(){
+                    var elemnet = document.getElementById("para1");
+                    elemnet.innerHTML="Mouse Over Effect";
+                }
+                function mouseout(){
+                    var elemnet = document.getElementById("para1");
+                    elemnet.innerHTML="Mouse Out Effect";
+                    elemnet.style.color = "blue";
+                }
+
+                
+            //Form Doğrulama İşlemleri    
+                function dogrula(){
+                    var form = document.forms["form1"];//formun özelliklerine eriştik
+                    var deger = form["isim"].value;//form da bulunan değeri deger değişkenine atadık
+                    
+                    if (deger == ""){
+                        alert("isim alanı boş bırakılamaz");
+                        return false;
+                    }
+                    return true;
+                }
+        </script>
+    </body>
+	
+</html>
